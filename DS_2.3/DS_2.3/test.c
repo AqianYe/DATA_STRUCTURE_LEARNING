@@ -293,100 +293,174 @@
 //	return L;
 //}
 
-typedef struct LNode//单链表的结构定义 
-{        
-	int data;//定义int类型的数据域 
-	struct LNode* next;//定义指针域 
-}LNode, * LinkList;
+//typedef struct LNode//单链表的结构定义 
+//{        
+//	int data;//定义int类型的数据域 
+//	struct LNode* next;//定义指针域 
+//}LNode, * LinkList;
+//
+////初始化单链表 并设置为空表
+//LNode* InitList(LNode* L)
+//{
+//	L = (LNode*)malloc(sizeof(LNode));
+//	L->next = NULL;
+//	//使头结点的指针域为空，建立一个空的单链表 
+//	return L;
+//}
+//
+////利用头插法建立单链表
+//void List_HeadInsert(LNode* L)
+//{
+//	LNode* p;
+//	//新建一个结点指针,永远指向当前链表的头结点
+//	int i;
+//	scanf_s("%d", &i);
+//	//输入i，用于指代输入的整数，将要放进链表的数据元素
+//	//也用来控制while循环，当输入i的值为9999时结束
+//	while (i != 9999) 
+//	{
+//		p = (LNode*)malloc(sizeof(LNode));//新建一个结点
+//		p->data = i;//把输入的值赋值给新结点的指针域
+//		p->next = L->next;//把新结点插入到表头
+//		L->next = p;//头结点要始终放在最前面
+//		scanf_s("%d", &i);
+//	}
+//}
+//
+////利用尾插法建立单链表
+//void List_TailInsert(LNode* L)
+//{
+//	LNode* r;
+//	//建立一个尾指针，始终指向当前链表的尾结点
+//	int i;//i用于指代输入的整数，将要放进链表的数据元素
+//	//也用来控制while循环，当输入i的值为9999时结束
+//	r = L;
+//	//令尾指针r指向头结点L，便于做尾插入 
+//	scanf_s("%d", &i);//输入插入的整数
+//	while (i != 9999)
+//	{
+//		LNode* p = (LNode*)malloc(sizeof(LNode));
+//		//建立一个新结点，用于存储数据元素
+//		p->data = i;
+//		r->next = p;
+//		r = p;
+//		scanf_s("%d", &i);
+//	}
+//	r->next = NULL;
+//}
+//
+////单链表打印
+//void ListPrint(LNode* L) 
+//{ 
+//	printf("该链表的内容为：");
+//	while (L->next != NULL)
+//	{
+//		printf("%d ", L->next->data);
+//		L = L->next;
+//	}
+//	printf("\n");
+//}
+//
+////单链表逆置
+//void ListReverse(LNode* L)
+//{
+//	LNode* p, * r;
+//	p = L->next;
+//	L->next = NULL;
+//	while (p != NULL)
+//	{
+//		r = p->next;
+//		p->next = L->next;
+//		L->next = p;
+//		p = r;
+//	}
+//	return L;
+//}
+//
+//int main() 
+//{
+//	LNode* L = NULL;
+//	L = InitList(L);
+//	printf("单链表已初始化\n");
+//	printf("用尾插法插入链表L：\n");
+//	List_TailInsert(L);
+//	ListPrint(L);
+//	printf("逆置此单链表\n");
+//	ListReverse(L);
+//	ListPrint(L);
+//	return 0;
+//}
 
-//初始化单链表 并设置为空表
-LNode* InitList(LNode* L)
-{
-	L = (LNode*)malloc(sizeof(LNode));
-	L->next = NULL;
-	//使头结点的指针域为空，建立一个空的单链表 
-	return L;
-}
+//双链表
+//typedef struct DNode//定义双链表结点类型
+//{
+//	ElemType data;//数据域
+//	struct DNode* prior, * next;//前驱和后继指针
+//}DNode,*DLinkList;
 
-//利用头插法建立单链表
-void List_HeadInsert(LNode* L)
-{
-	LNode* p;
-	//新建一个结点指针,永远指向当前链表的头结点
-	int i;
-	scanf_s("%d", &i);
-	//输入i，用于指代输入的整数，将要放进链表的数据元素
-	//也用来控制while循环，当输入i的值为9999时结束
-	while (i != 9999) 
-	{
-		p = (LNode*)malloc(sizeof(LNode));//新建一个结点
-		p->data = i;//把输入的值赋值给新结点的指针域
-		p->next = L->next;//把新结点插入到表头
-		L->next = p;//头结点要始终放在最前面
-		scanf_s("%d", &i);
-	}
-}
+//初始化双链表
+//bool InitLink(DLinkList& L)
+//{
+//	L = (DNode*)malloc(sizeof(DNode));//分配一个头结点
+//	if (L == NULL)//内存不足，分配失败
+//		return false;
+//	L->prior = NULL;//头结点的prior永远指向NULL
+//	L->next = NULL;//头结点之后暂时还没有结点
+//	return true;
+//}
 
-//利用尾插法建立单链表
-void List_TailInsert(LNode* L)
-{
-	LNode* r;
-	//建立一个尾指针，始终指向当前链表的尾结点
-	int i;//i用于指代输入的整数，将要放进链表的数据元素
-	//也用来控制while循环，当输入i的值为9999时结束
-	r = L;
-	//令尾指针r指向头结点L，便于做尾插入 
-	scanf_s("%d", &i);//输入插入的整数
-	while (i != 9999)
-	{
-		LNode* p = (LNode*)malloc(sizeof(LNode));
-		//建立一个新结点，用于存储数据元素
-		p->data = i;
-		r->next = p;
-		r = p;
-		scanf_s("%d", &i);
-	}
-	r->next = NULL;
-}
+//void testDLinkList
+//{
+//	//初始化双链表
+//	DLinkList L;
+//	InitDLinkList(L);
+//	//后续代码...
+//}
 
-//单链表打印
-void ListPrint(LNode* L) 
-{ 
-	printf("该链表的内容为：");
-	while (L->next != NULL)
-	{
-		printf("%d ", L->next->data);
-		L = L->next;
-	}
-	printf("\n");
-}
+//判断双链表是否为空（带头结点）
+//bool Empty(DLinkList L)
+//{
+//	if (L->next == NULL)
+//		return true;
+//	else
+//		return false;
+//}
 
-//单链表逆置
-void ListReverse(LNode* L)
-{
-	LNode* p, * r;
-	p = L->next;
-	L->next = NULL;
-	while (p != NULL)
-	{
-		r = p->next;
-		p->next = L->next;
-		L->next = p;
-		p = r;
-	}
-	return L;
-}
+//双链表的插入
+//在p结点之后插入s结点
+//bool InsertNextDNode(DNode* p, DNode* s)
+//{
+//	s->next = p->next;//将结点*s插入到*p之后
+//	p->next->prior = s;
+//	s->prior = p;
+//	p->next = s;
+//}
+//若p恰好为最后一个结点，则第二句无法执行
+//故而此段代码可修改为
+//bool InsertNexrDNode(DNode* p, DNode* s)
+//{
+//	if (p == NULL || s == NULL)//非法参数
+//		return false;
+//	s->next = p->next;
+//	if (p->next != NULL)//如果p结点有后继点
+//		p->next->prior = s;
+//	s->prior = p;
+//	p->next = s;
+//	return true;
+//}
 
-int main() 
-{
-	LNode* L = NULL;
-	L = InitList(L);
-	printf("单链表已初始化\n");
-	printf("用尾插法插入链表L：\n");
-	List_TailInsert(L);
-	ListPrint(L);
-	printf("逆置此单链表\n");
-	ListReverse(L);
-	ListPrint(L);
-	return 0;
-}
+//双链表的删除
+//删除p的后继结点q
+//bool DeleteNextDNode(DNode* p)
+//{
+//	if (p = NULL)
+//		return false;
+//	DNode* q = p->next;//找到p的后继结点q
+//	if (q == NULL)
+//		return false;//p没有后继
+//	p->next = q->next;
+//	if (q->next != NULL)
+//		q->next->prior = p;
+//	free(q);//释放结点空间
+//	return true;
+//}
