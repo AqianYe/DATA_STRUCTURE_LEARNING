@@ -1,0 +1,21 @@
+﻿  test.c
+D:\show me the code\DS_3.2\DS_3.2\test.c(1,1): warning C4828: 文件包含在偏移 0x1070 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
+D:\show me the code\DS_3.2\DS_3.2\test.c(162,2): error C2061: 语法错误: 标识符“ElemType”
+D:\show me the code\DS_3.2\DS_3.2\test.c(164,1): error C2059: 语法错误:“}”
+D:\show me the code\DS_3.2\DS_3.2\test.c(168,2): error C2061: 语法错误: 标识符“LinkNode”
+D:\show me the code\DS_3.2\DS_3.2\test.c(169,1): error C2059: 语法错误:“}”
+D:\show me the code\DS_3.2\DS_3.2\test.c(173,25): error C2143: 语法错误: 缺少“)”(在“&”的前面)
+D:\show me the code\DS_3.2\DS_3.2\test.c(173,25): error C2143: 语法错误: 缺少“{”(在“&”的前面)
+D:\show me the code\DS_3.2\DS_3.2\test.c(173,25): error C2059: 语法错误:“&”
+D:\show me the code\DS_3.2\DS_3.2\test.c(173,28): error C2059: 语法错误:“)”
+D:\show me the code\DS_3.2\DS_3.2\test.c(181,6): error C2061: 语法错误: 标识符“IsEmpty”
+D:\show me the code\DS_3.2\DS_3.2\test.c(181,6): error C2059: 语法错误:“;”
+D:\show me the code\DS_3.2\DS_3.2\test.c(181,24): error C2146: 语法错误: 缺少“)”(在标识符“Q”的前面)
+D:\show me the code\DS_3.2\DS_3.2\test.c(181,24): error C2061: 语法错误: 标识符“Q”
+D:\show me the code\DS_3.2\DS_3.2\test.c(181,25): error C2059: 语法错误:“)”
+D:\show me the code\DS_3.2\DS_3.2\test.c(182,1): error C2449: 在文件范围内找到“{”(是否缺少函数头?)
+D:\show me the code\DS_3.2\DS_3.2\test.c(188,1): error C2059: 语法错误:“}”
+D:\show me the code\DS_3.2\DS_3.2\test.c(199,25): error C2143: 语法错误: 缺少“)”(在“&”的前面)
+D:\show me the code\DS_3.2\DS_3.2\test.c(199,25): error C2143: 语法错误: 缺少“{”(在“&”的前面)
+D:\show me the code\DS_3.2\DS_3.2\test.c(199,25): error C2059: 语法错误:“&”
+D:\show me the code\DS_3.2\DS_3.2\test.c(199,28): error C2059: 语法错误:“)”
