@@ -1,0 +1,4 @@
+﻿  test.c
+D:\show me the code\DS_4.1\DS_4.1\test.c(170,20): warning C4013: “StrLength”未定义；假设外部返回 int
+D:\show me the code\DS_4.1\DS_4.1\test.c(174,9): warning C4013: “SubString”未定义；假设外部返回 int
+D:\show me the code\DS_4.1\DS_4.1\test.c(174): error C4700: 使用了未初始化的局部变量“sub”
