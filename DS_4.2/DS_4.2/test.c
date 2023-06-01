@@ -93,3 +93,44 @@ m个子串，复杂度 = O( (n-m+1)m ) = O(nm)
 复杂度 = O(m) + O(n) = O(m+n)
 */
 
+
+
+//三、求模式串的next数组
+/*
+next数组的作用：当模式串的第j个字符失配时，j转从模式串的第
+next[j]个数字继续往后匹配
+
+对任意字符串，next[1]均为0，next[2]均为1
+*/
+
+
+
+//四、KMP算法的进一步优化
+//int Index_KMP(SString S, SString T, int nextval[])
+//{
+//	int i = 1, j = 1;
+//	while (i <= S.length && i <= T.length)
+//	{
+//		if (j == 0 || S.ch[i] == T.ch[j])
+//		{
+//			++i;
+//			++j;//继续比较后继字符
+//		}
+//		else
+//			j = nextval[j];//模式串向后移动
+//	}
+//	if (j > T.length)
+//		return i - T.length;//匹配成功
+//	else
+//		return 0;
+//}
+
+/*求nextval数组*/
+//nextval[1] = 0;
+//for (int j = 2, ; j <= T.length; j++)
+//{
+//	if (T.ch[next[j]] == T.ch[j])
+//		nextval[j] = nextval[next[j]];
+//	else
+//		nextval[j] = next[j];
+//}
