@@ -245,3 +245,199 @@ i的父节点 → ⌈log2(n + 1)⌉ 或 ⌊log2n⌋ + 1
 2）后序 + 中序遍历序列
 3）层序 + 中序遍历序列
 */
+
+
+
+//四、线索二叉树（重点）
+/*
+n个结点的二叉树，有n+1个空链域，可用来记录前驱、后继的信息
+*/
+//二叉树的结点（链式存储）
+//typedef struct BitTNode
+//{
+//	ElemType data;
+//	struct BiTNode* lchild, * rchild;
+//}BiTNode, * BiTree;
+
+//1、线索二叉树
+//typedef struct ThreadNode
+//{
+//	ElemType data;
+//	struct ThreadNode* lchild, * rchild;
+//	int ltag, rtag;//左右线索标志
+//	//tag==0，表示指针指向孩子
+//	//tag==1，表示指针是“线索”
+//}ThreadNode, * ThreadTree;
+
+
+//2、用土办法找到中序前驱
+//中序遍历
+//void InOrder(BiTree T)
+//{
+//	if (T != NULL)
+//	{
+//		InOrder(T->lchild);//递归遍历左子树
+//		visit(T);//访问根节点
+//		InOrder(T->rchild);//递归遍历右子树
+//	}
+//}
+////访问结点q
+//void visit(BiTNode* q)
+//{
+//	if (q == p)//当前访问结点刚好是结点p
+//		final = pre;//找到p的前驱
+//	else
+//		pre = q;//pre指向当前访问的结点
+//}
+////辅助全局变量，用于查找结点p的前驱
+//BiTNode* p;//p指向目标结点
+//BiTNode* pre = NULL;//指向当前访问结点的前驱
+//BiTNode* final = NULL;//用于记录最终结果
+//
+//
+////3、中序线索化
+////全局变量pre，指向当前访问结点的前驱
+//TreadNode* pre = NULL;
+////中序线索化二叉树
+//void CreateInTread(ThreadTree T)
+//{
+//	pre = NULL;//pre初始为NULL
+//	if (T != NULL)//非空二叉树才能线索化
+//	{
+//		InTread(T);//中序线索化二叉树
+//		if (pre->rchild == NULL)
+//			pre->rtag = 1;//处理遍历的最后一个节点
+//	}
+//}
+////线索二叉树结点
+//typedef struct ThreadNode
+//{
+//	ElemType data;
+//	struct ThreadNode* lchild, * rchild;
+//	int ltag, rtag;//左、右线索标志
+//}ThreadNode, * ThreadTree;
+////中序遍历二叉树，一边遍历一边线索化
+//void InTread(TreadTree T)
+//{
+//	if (T != NULL)
+//	{
+//		InTread(T->lchild);//中序遍历左子树
+//		visit(T);//访问根节点
+//		InTread(T->rchild);//中序遍历右子树
+//	}
+//}
+//void visit(ThreadNode* q)
+//{
+//	if (q->lchild == NULL)
+//	{
+//		//左子树为空，建立前驱线索
+//		q->lchild = pre;
+//		q->ltag = 1;
+//	}
+//	if (pre != NULL && pre->rchild == NULL)
+//		//'pre!=NULL'是为了限制中序遍历处理第一个结点
+//	{
+//		//建立前驱节点的后继线索
+//		pre->rchild = q;
+//		pre->rtag = 1;
+//	}
+//	pre = q;
+//}
+
+
+//4、先序线索化
+//全局变量pre，指向当前访问结点的前驱
+//TreadNode* pre = NULL;
+////先序线索化二叉树
+//void CreatePreThread(ThreadTree T)
+//{
+//	pre = NULL;//pre初始化为NULL
+//	if (T != NULL)//非空二叉树才能线索化
+//	{
+//		PreThread(T);//先序线索化二叉树
+//		if (pre->rchild == NULL)
+//			pre->rtag = 1;//处理遍历的最后一个结点
+//	}
+//}
+//先序遍历二叉树，一边遍历一边线索化
+///*
+//void PreThread(TreadTree T)
+//{
+//	if (T != NULL)
+//	{
+//		visit(T);//先处理根节点
+//		PreThread(T->lchild);
+//		PreThread(T->rchild);
+//	}
+//}
+//*/
+///*
+//防止出现左子树为空指向pre后，处理PreTread(T->lchild)时无限
+//循环，故更改为如下代码：
+//*/
+//void PreThread(ThreadTree T)
+//{
+//	if (T != NULL)
+//	{
+//		visit(T);//先处理根节点
+//		if (T->ltag == 0)//lchild不是前驱线索
+//			PreThread(T->lchild);
+//		PreThread(T->rchild);
+//	}
+//}
+//void visit(ThreadNode* q)
+//{
+//	if (q->lchild = NULL)
+//	{
+//		//左子树为空，建立前驱线索
+//		q - lchild = pre;
+//		q->ltag = 1;
+//	}
+//	if (pre != NULL && pre->rchild == NULL)
+//	{
+//		pre->rchild = q;//建立前驱节点的后继线索
+//		pre->rtag = 1;
+//	}
+//	pre = q;
+//}
+
+
+//5、后序线索化
+//全局变量pre，指向当前访问结点的前驱
+//TreadNode* pre = NULL;
+//后序线索化二叉树
+//void CreatePostThread(ThreadTree T)
+//{
+//	pre = NULL;//pre初始化为NULL
+//	if (T != NULL)//非空二叉树才能线索化
+//	{
+//		PostThread(T);//先序线索化二叉树
+//		if (pre->rchild == NULL)
+//			pre->rtag = 1;//处理遍历的最后一个结点
+//	}
+//}
+////后序遍历二叉树，一边遍历一边线索化
+//void PostThread(ThreadTree T)
+//{
+//	if (T != NULL)
+//	{
+//		PostThread(T->lchild);//后序遍历左子树
+//		PostThread(T->rchild);//后序遍历右子树
+//		visit(T);//访问根节点
+//	}
+//}
+//void visit(ThreadNode* q)
+//{
+//	if (q->lchild == NULL)
+//	{
+//		//左子树为空，建立前驱线索
+//		q->lchild = pre;
+//		q->ltag = 1;
+//	}
+//	if (pre != NULL && pre->rchild = NULL)
+//	{
+//		pre->rchild = q;//建立前驱节点的后继线索
+//		pre->rtag = 1;
+//	}
+//	pre = q;
+//}
