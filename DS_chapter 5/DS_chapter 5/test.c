@@ -441,3 +441,109 @@ n个结点的二叉树，有n+1个空链域，可用来记录前驱、后继的�
 //	}
 //	pre = q;
 //}
+
+
+
+//五、线索二叉树找前驱/后继
+//1、中序线索二叉树找中序后继
+/*
+在中序线索二叉树中找到指定结点*p的中序后继next
+①若p->rtag == 1，则next = p->rchild
+②若p->rtag == 0，则next = p的右子树中最左下结点
+*/
+
+//找到以P为根的子树中，第一个被中序遍历的结点
+ThreadNode* FirstNode(ThreadNode* p)
+{
+	//循环找到最左下结点（不一定是叶结点）
+	while (p->ltag == 0)
+		p = p->lchild;
+	return p;
+}
+
+//在中序线索二叉树中找到结点p的后继结点
+ThreadNode* NextNode(ThreadNode* p)
+{
+	//右子树中最左下结点
+	if (p->rtag == 0)
+		return FirstNode(p->rchild);
+	else
+		return p->rchild;//rtag==1直接返回后继线索
+}
+
+//对中序线索二叉树进行中序遍历（利用线索实现的非递归算法）
+void Inorder(ThreadNode* T)
+{
+	for (ThreadNode* p = Firstnode(T); p != NULL; p = NextNode(p))
+		visit(p);
+}//空间复杂度O(1)
+
+
+//2、中序线索二叉树找中序前驱
+/*
+在中序线索二叉树中找到指定结点*p的中序前驱pre
+①若p->rtag == 1，则pre = p->lchild
+②若p->rtag == 0，则pre = p的左子树中最右下结点
+*/
+
+//找到以P为根的子树中，最后一个被中序遍历的结点
+ThreadNode* LastNode(ThreadNode* p)
+{
+	//循环找到最右下结点（不一定是叶结点）
+	while (p->rtag == 0)
+		p = p->rchild;
+	return p;
+}
+
+//在中序线索二叉树中找到结点p的前驱结点
+ThreadNode* PreNode(ThreadNode* p)
+{
+	//左子树中最右下结点
+	if (p - < ltag == 0)
+		return Last(p->lchild);
+	else
+		return p->lchild;//ltag==1直接返回前驱线索
+}
+
+//对中序线索二叉树进行逆向中序遍历
+void RevInorder(ThreadNode* T)
+{
+	for (ThreadNode* p = LastNode(T); p != NULL; p = PreNode(p))
+		visit(p);
+}
+
+
+//3、先序线索二叉树找先序后继
+/*
+在先序线索二叉树中找到指定结点*p的先序后继next
+①若p->rtag == 1，则next = p->rchild
+②若p->rtag == 0，则（p必有右孩子）
+1）若p有左孩子，则next = p的左孩子
+2）若p无左孩子，则next = p的右孩子
+*/
+ThreadNode* NextNode(ThreadNode* p)
+{
+	if (p->rtag == 0 || p->ltag == 0)
+		return T->rchild;
+	else
+		return T->lchild;
+}
+
+
+//4、先序线索二叉树找先序前驱
+/*
+在中序线索二叉树中找到指定结点*p的先序前驱pre
+①若p->ltag == 1，则next = p->rchild
+②若p->rtag == 0，则（p必有左孩子）
+先序遍历中，左右子树中的结点只可能是根的后继，不可能是前驱
+但可以将二叉链表拓展为三叉链表，也就是给各个节点设置一个指
+向其父节点的指针
+1）如果能找到p的父节点，且p是左孩子，则next = p的父节点
+2）如果能找到p的父节点，且p是右孩子，其左兄弟为空，则next
+= p的父节点
+3）如果能找到p的父节点，且p是右孩子，其左兄弟非空，则next
+= p的左兄弟子树中最后一个被先序遍历的结点
+4）如果p是根节点，则p没有先序前驱
+*/
+
+
