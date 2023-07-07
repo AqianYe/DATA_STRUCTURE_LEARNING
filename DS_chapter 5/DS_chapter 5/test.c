@@ -453,30 +453,30 @@ n个结点的二叉树，有n+1个空链域，可用来记录前驱、后继的�
 */
 
 //找到以P为根的子树中，第一个被中序遍历的结点
-ThreadNode* FirstNode(ThreadNode* p)
-{
-	//循环找到最左下结点（不一定是叶结点）
-	while (p->ltag == 0)
-		p = p->lchild;
-	return p;
-}
+//ThreadNode* FirstNode(ThreadNode* p)
+//{
+//	//循环找到最左下结点（不一定是叶结点）
+//	while (p->ltag == 0)
+//		p = p->lchild;
+//	return p;
+//}
 
 //在中序线索二叉树中找到结点p的后继结点
-ThreadNode* NextNode(ThreadNode* p)
-{
-	//右子树中最左下结点
-	if (p->rtag == 0)
-		return FirstNode(p->rchild);
-	else
-		return p->rchild;//rtag==1直接返回后继线索
-}
+//ThreadNode* NextNode(ThreadNode* p)
+//{
+//	//右子树中最左下结点
+//	if (p->rtag == 0)
+//		return FirstNode(p->rchild);
+//	else
+//		return p->rchild;//rtag==1直接返回后继线索
+//}
 
 //对中序线索二叉树进行中序遍历（利用线索实现的非递归算法）
-void Inorder(ThreadNode* T)
-{
-	for (ThreadNode* p = Firstnode(T); p != NULL; p = NextNode(p))
-		visit(p);
-}//空间复杂度O(1)
+//void Inorder(ThreadNode* T)
+//{
+//	for (ThreadNode* p = Firstnode(T); p != NULL; p = NextNode(p))
+//		visit(p);
+//}//空间复杂度O(1)
 
 
 //2、中序线索二叉树找中序前驱
@@ -487,30 +487,30 @@ void Inorder(ThreadNode* T)
 */
 
 //找到以P为根的子树中，最后一个被中序遍历的结点
-ThreadNode* LastNode(ThreadNode* p)
-{
-	//循环找到最右下结点（不一定是叶结点）
-	while (p->rtag == 0)
-		p = p->rchild;
-	return p;
-}
+//ThreadNode* LastNode(ThreadNode* p)
+//{
+//	//循环找到最右下结点（不一定是叶结点）
+//	while (p->rtag == 0)
+//		p = p->rchild;
+//	return p;
+//}
 
 //在中序线索二叉树中找到结点p的前驱结点
-ThreadNode* PreNode(ThreadNode* p)
-{
-	//左子树中最右下结点
-	if (p - < ltag == 0)
-		return Last(p->lchild);
-	else
-		return p->lchild;//ltag==1直接返回前驱线索
-}
+//ThreadNode* PreNode(ThreadNode* p)
+//{
+//	//左子树中最右下结点
+//	if (p -> ltag == 0)
+//		return LastNode(p->lchild);
+//	else
+//		return p->lchild;//ltag==1直接返回前驱线索
+//}
 
 //对中序线索二叉树进行逆向中序遍历
-void RevInorder(ThreadNode* T)
-{
-	for (ThreadNode* p = LastNode(T); p != NULL; p = PreNode(p))
-		visit(p);
-}
+//void RevInorder(ThreadNode* T)
+//{
+//	for (ThreadNode* p = LastNode(T); p != NULL; p = PreNode(p))
+//		visit(p);
+//}
 
 
 //3、先序线索二叉树找先序后继
@@ -518,32 +518,137 @@ void RevInorder(ThreadNode* T)
 在先序线索二叉树中找到指定结点*p的先序后继next
 ①若p->rtag == 1，则next = p->rchild
 ②若p->rtag == 0，则（p必有右孩子）
-1）若p有左孩子，则next = p的左孩子
-2）若p无左孩子，则next = p的右孩子
+1）若p有左孩子，则next = p -> lchild
+2）若p无左孩子，则next = p -> rchild
 */
-ThreadNode* NextNode(ThreadNode* p)
-{
-	if (p->rtag == 0 || p->ltag == 0)
-		return T->rchild;
-	else
-		return T->lchild;
-}
+//ThreadNode* NextNode(ThreadNode* p)
+//{
+//	if (p->rtag == 1 || p->ltag == 1)
+//		return T->rchild;
+//	else
+//		return T->lchild;
+//}
 
 
 //4、先序线索二叉树找先序前驱
 /*
-在中序线索二叉树中找到指定结点*p的先序前驱pre
-①若p->ltag == 1，则next = p->rchild
+在先序线索二叉树中找到指定结点*p的先序前驱pre
+①若p->ltag == 1，则pre = p->lchild
 ②若p->rtag == 0，则（p必有左孩子）
 先序遍历中，左右子树中的结点只可能是根的后继，不可能是前驱
 但可以将二叉链表拓展为三叉链表，也就是给各个节点设置一个指
 向其父节点的指针
-1）如果能找到p的父节点，且p是左孩子，则next = p的父节点
-2）如果能找到p的父节点，且p是右孩子，其左兄弟为空，则next
+1）如果能找到p的父节点，且p是左孩子，则pre = p的父节点
+2）如果能找到p的父节点，且p是右孩子，其左兄弟为空，则pre
 = p的父节点
-3）如果能找到p的父节点，且p是右孩子，其左兄弟非空，则next
+3）如果能找到p的父节点，且p是右孩子，其左兄弟非空，则pre
 = p的左兄弟子树中最后一个被先序遍历的结点
 4）如果p是根节点，则p没有先序前驱
 */
 
 
+//5、后序线索二叉树找后序前驱
+/*
+在后序线索二叉树中找到指定结点*p的后序前驱pre
+①若p -> ltag == 1，则pre = p -> lchild
+②若p -> ltag == 0，则（p必有右孩子）
+1）若p有右孩子，则next = p -> rchild
+2）若p无右孩子，则next = p -> lchild
+*/
+//ThreadNode* PreNode(ThreadNode* p)
+//{
+//	if (p->ltag == 1 || p->rtag == 0)
+//		return T->lchild;
+//	else
+//		return T->rchild;
+//}
+
+
+//6、后序线索二叉树找后序后继
+/*
+在后序线索二叉树中找到指定结点*p的后序后继next
+①若p->rtag == 1，则next = p->rchild
+②若p->rtag == 0，则（p必有右孩子）
+后序遍历中，左右子树中的结点只可能是根的前驱，不可能是后继
+但可以将二叉链表拓展为三叉链表，也就是给各个节点设置一个指
+向其父节点的指针
+1）如果能找到p的父节点，且p是右孩子，则next = p的父节点
+2）如果能找到p的父节点，且p是左孩子，其右兄弟为空，则next
+= p的父节点
+3）如果能找到p的父节点，且p是左孩子，其右兄弟非空，则pre
+= p的右兄弟子树中第一个被后序遍历的结点
+4）如果p是根节点，则p没有后序后继
+*/
+
+
+//建立二叉树及先序遍历的完整代码
+#include<malloc.h>
+#define Max 100
+int count = 0;
+typedef struct TNode
+{
+	char data;
+	struct TNode* lchild, * rchild;
+}BT;
+
+//按照先序遍历的方法建立二叉树
+BT* CreateBTree()
+{
+	BT* t;
+	char ch;
+	scanf("%c", &ch);
+	getchar();
+	if (ch == '0')
+	{
+		t = NULL;
+	}
+	else
+	{
+		t = (BT*)malloc(sizeof(BT));
+		t->data = ch;
+		printf("请输入%c结点的左孩子结点：", t->data);
+		t->lchild = CreateBTree();
+		printf("请输入%c结点的右孩子结点：", t->data);
+		t->rchild = CreateBTree();
+	}
+	return t;
+}
+
+//对二叉树进行先序遍历
+void PreOrder(BT* T)
+{
+	if (T == NULL)
+		return;
+	else
+	{
+		printf("%c", T->data);
+		PreOrder(T->lchild);
+		PreOrder(T->rchild);
+	}
+}
+
+//求二叉树的深度
+int TreeDepth(BT* T)
+{
+	if (T == NULL)
+		return 0;
+	else
+	{
+		int l = TreeDepth(T->lchild);
+		int r = TreeDepth(T->rchild);
+		return l > r ? l + 1 : r + 1;
+	}
+}
+
+int main()
+{
+	BT* T = NULL;
+	printf("请按先序序列输入二叉树的结点：\n");
+	printf("请输入根节点：");
+	T = CreateBTree();
+	printf("二叉树成功建立\n");
+	printf("二叉树的先序遍历序列为：");
+	PreOrder(T);
+	printf("该二叉树的深度是%d", TreeDepth(T));
+	return 0;
+}

@@ -1,8 +1,2 @@
 ﻿  test.c
-D:\show me the code\DS_chapter 5\DS_chapter 5\test.c(199,2): warning C4091: “typedef ”: 没有声明变量时忽略“BiTNode”的左侧
-D:\show me the code\DS_chapter 5\DS_chapter 5\test.c(200,24): error C2146: 语法错误: 缺少“)”(在标识符“T”的前面)
-D:\show me the code\DS_chapter 5\DS_chapter 5\test.c(200,24): error C2061: 语法错误: 标识符“T”
-D:\show me the code\DS_chapter 5\DS_chapter 5\test.c(200,24): error C2059: 语法错误:“;”
-D:\show me the code\DS_chapter 5\DS_chapter 5\test.c(200,25): error C2059: 语法错误:“)”
-D:\show me the code\DS_chapter 5\DS_chapter 5\test.c(201,1): error C2449: 在文件范围内找到“{”(是否缺少函数头?)
-D:\show me the code\DS_chapter 5\DS_chapter 5\test.c(215,1): error C2059: 语法错误:“}”
+  DS_chapter 5.vcxproj -> D:\C_CODE\DATA_STRUCTURE_LEARNING\DS_chapter 5\x64\Debug\DS_chapter 5.exe
